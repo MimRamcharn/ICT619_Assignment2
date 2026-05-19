@@ -680,16 +680,13 @@ elif page == "Predict Incident":
                 'New_nar_injury_illness':   clean_text(illness),
                 'New_nar_object_substance': clean_text(obj_substance),
                 'New_incident_location':    clean_text(location),
-                'dafw_clipped':             dafw_c,
-                'djtr_clipped':             djtr_c,
-                'total_severity_days':      total_c,
+                'dafw_clipped':             0.0,
+                'djtr_clipped':             0.0,
+                'total_severity_days':      0.0,
             }])
 
             prediction  = int(model.predict(input_df)[0])
             probability = model.predict_proba(input_df)[0]
-
-            st.write("DEBUG raw proba:", probability)
-            st.write("DEBUG prediction:", prediction)
 
             # Ensure probabilities are valid 0-1 values
             high_prob = float(np.clip(probability[1], 0.0, 1.0))
