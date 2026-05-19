@@ -65,8 +65,3 @@ streamlit run app.py
 | High Priority (1) | 1, 2 | Death or Days Away From Work |
 | Low Priority (0) | 3, 4 | Job Transfer/Restriction or Other Recordable |
 
-## AI Tools Declaration
-
-This project used Claude (Anthropic) to assist with code generation and debugging.
-All code has been reviewed and understood by the authors.
-Reference: Anthropic. (2026). Claude (claude-sonnet-4-6) [Large language model]. https://www.anthropic.com
