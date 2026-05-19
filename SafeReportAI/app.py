@@ -7,14 +7,14 @@ import os
 import plotly.express as px
 import plotly.graph_objects as go
 
-# ── Page config ───────────────────────────────────────────────────────────────
+#Page config 
 st.set_page_config(
     page_title="Safe Report AI — WestMine",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+#Custom CSS 
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
@@ -216,7 +216,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+#Helpers
 def clean_text(text: str) -> str:
     text = str(text).lower()
     text = re.sub(r'[^a-z\s]', ' ', text)
@@ -250,7 +250,7 @@ PLOTLY_LAYOUT = dict(
 )
 
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
+#Sidebar
 with st.sidebar:
     st.markdown("""
     <div style='text-align:center; padding:20px 0 24px;'>
@@ -286,7 +286,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # PAGE 1 — ABOUT THE MODEL
 # ══════════════════════════════════════════════════════════════════════════════
 if page == "About the Model":
@@ -296,7 +296,7 @@ if page == "About the Model":
     <br>
     """, unsafe_allow_html=True)
 
-    # ── Problem ───────────────────────────────────────────────────────────────
+    #Problem
     st.markdown("### Problem Statement")
     st.markdown("""
     <div class='metric-card'>
@@ -309,7 +309,7 @@ if page == "About the Model":
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Target variable ───────────────────────────────────────────────────────
+    #Target variable
     st.markdown("### Target Variable — Priority Label")
     col1, col2 = st.columns(2)
     with col1:
@@ -341,7 +341,7 @@ if page == "About the Model":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ── Dataset ───────────────────────────────────────────────────────────────
+    #Dataset 
     st.markdown("### Dataset")
     st.markdown("""
     <div class='metric-card'>
@@ -356,7 +356,7 @@ if page == "About the Model":
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Methodology ───────────────────────────────────────────────────────────
+    #Methodology
     st.markdown("### Methodology")
     st.markdown("""
     <div class='metric-card'>
@@ -379,7 +379,7 @@ if page == "About the Model":
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Performance ───────────────────────────────────────────────────────────
+    #Performance
     st.markdown("### Model Performance on Unseen Test Set")
     st.markdown("""
     <div class='info-box'>
@@ -418,31 +418,26 @@ if page == "About the Model":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ── What the metrics mean ─────────────────────────────────────────────────
+    #What the metrics mean
     st.markdown("### What Do These Metrics Mean?")
     st.markdown("""
     <div class='metric-card'>
-        <b>Accuracy</b> — out of all 14,302 test records, what percentage did the model
+        <strong>Accuracy</strong> — out of all 14,302 test records, what percentage did the model
         label correctly. LR correctly labelled 66% of all records.<br><br>
-
-        <b>AUC-ROC (0.7323)</b> — measures how well the model separates High from Low Priority.
+        <strong>AUC-ROC (0.7323)</strong> — measures how well the model separates High from Low Priority.
         A score of 0.5 means random guessing. A score of 1.0 means perfect separation.
         0.73 means the model correctly ranks a random High Priority incident above a random
         Low Priority incident 73% of the time.<br><br>
-
-        <b>Recall — High Priority (68.8%)</b> — of all 7,151 actual High Priority incidents
+        <strong>Recall — High Priority (68.8%)</strong> — of all 7,151 actual High Priority incidents
         in the test set, the model correctly identified 4,921 of them (68.8%).
         It missed 2,230. In a safety context this is the most critical metric —
         a missed urgent incident is more dangerous than a false alarm.<br><br>
-
-        <b>Precision — High Priority (65.2%)</b> — of all incidents the model flagged as
+        <strong>Precision — High Priority (65.2%)</strong> — of all incidents the model flagged as
         High Priority, 65.2% were actually High Priority. The remaining 34.8% were
         false alarms that a safety officer would review and dismiss.<br><br>
-
-        <b>F1 Score</b> — the balance between Precision and Recall. A high F1 means the
+        <strong>F1 Score</strong> — the balance between Precision and Recall. A high F1 means the
         model is both catching most urgent cases AND not raising too many false alarms.<br><br>
-
-        <b>Why Logistic Regression over Random Forest?</b><br>
+        <strong>Why Logistic Regression over Random Forest?</strong><br>
         LR was selected based on higher AUC-ROC (0.7323 vs 0.7101), meaning it
         discriminates better overall. However, Random Forest has a much higher Recall
         (84.2% vs 68.8%) — it catches far more urgent incidents at the cost of more
@@ -451,28 +446,25 @@ if page == "About the Model":
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Limitations ───────────────────────────────────────────────────────────
+    #Limitations
     st.markdown("### Limitations")
     st.markdown("""
     <div class='metric-card'>
-        <b>Vocabulary overlap:</b> High and Low Priority incidents are described using
+        <strong>Vocabulary overlap:</strong> High and Low Priority incidents are described using
         very similar language. A strained knee and a fractured knee use almost identical
         words, making the classification task genuinely difficult.<br><br>
-
-        <b>Death cases:</b> Only 29 Death cases appeared in the 100,000 record sample
+        <strong>Death cases:</strong> Only 29 Death cases appeared in the 100,000 record sample
         (0.03%). The model groups Deaths with DAFW under High Priority to mitigate this,
         but it may not reliably distinguish fatal incidents specifically.<br><br>
-
-        <b>Dataset scope:</b> The model was trained on US OSHA data. Performance may
+        <strong>Dataset scope:</strong> The model was trained on US OSHA data. Performance may
         differ on WestMine-specific incident reports which may use different terminology.<br><br>
-
-        <b>AI-assisted only:</b> All classifications should be reviewed by a qualified
+        <strong>AI-assisted only:</strong> All classifications should be reviewed by a qualified
         safety officer before final determination.
     </div>
     """, unsafe_allow_html=True)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # PAGE 2 — DATASET EXPLORER
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "Dataset Explorer":
@@ -493,7 +485,7 @@ elif page == "Dataset Explorer":
 
     df = load_sample_data()
 
-    # ── Outcome distribution ──────────────────────────────────────────────────
+    #Outcome distribution 
     st.markdown("### Incident Outcome Distribution")
     fig1 = go.Figure(data=[go.Bar(
         x=['Days Away From Work (2)', 'Other Recordable (4)',
@@ -517,7 +509,7 @@ elif page == "Dataset Explorer":
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Binary label ─────────────────────────────────────────────────────────
+    #Binary label
     st.markdown("### Binary Priority Label Before Balancing")
     fig2 = go.Figure(data=[go.Bar(
         x=['High Priority (Death + DAFW)', 'Low Priority (Transfer + Other)'],
@@ -539,7 +531,7 @@ elif page == "Dataset Explorer":
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Incident type vs priority ─────────────────────────────────────────────
+    #Incident type vs priority
     st.markdown("### Incident Type vs Priority Label")
     fig3 = go.Figure(data=[
         go.Bar(name='High Priority',
@@ -566,7 +558,7 @@ elif page == "Dataset Explorer":
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Model performance ─────────────────────────────────────────────────────
+    #Model performance
     st.markdown("### Model Performance Comparison")
     col5, col6 = st.columns(2)
 
@@ -614,7 +606,7 @@ elif page == "Dataset Explorer":
             st.plotly_chart(fig6, use_container_width=True)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+
 # PAGE 3 — PREDICT INCIDENT
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "Predict Incident":
@@ -746,7 +738,7 @@ elif page == "Predict Incident":
                 </div>
                 """, unsafe_allow_html=True)
 
-            # ── Probability breakdown table ───────────────────────────────────
+            #Probability breakdown table
             st.markdown("<br><div class='section-header'>Probability Breakdown</div>",
                         unsafe_allow_html=True)
             st.markdown(f"""
@@ -777,7 +769,7 @@ elif page == "Predict Incident":
             <br>
             """, unsafe_allow_html=True)
 
-            # ── What this means in plain language ────────────────────────────
+            #What this means in plain language
             st.markdown("<div class='section-header'>What This Means</div>",
                         unsafe_allow_html=True)
             if prediction == 1:
