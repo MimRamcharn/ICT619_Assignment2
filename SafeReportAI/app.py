@@ -669,9 +669,9 @@ elif page == "Predict Incident":
             p99_dafw_clip = 180
             p99_djtr_clip = 180
 
-            dafw_c  = min(dafw, p99_dafw_clip)
-            djtr_c  = min(djtr, p99_djtr_clip)
-            total_c = min(dafw_c + djtr_c, 360)
+            dafw_c  = 0
+            djtr_c  = 0
+            total_c = 0
 
             input_df = pd.DataFrame([{
                 'New_incident_description': clean_text(desc),
