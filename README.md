@@ -15,27 +15,21 @@ pip install -r requirements.txt
 ```
 notebooks/Assignment_2_final.ipynb
 ```
-This saves `models/best_model.joblib`
+To save `models/best_model.joblib`
 
-3. (Optional) Save a dashboard sample for the Explorer page:
-```python
-df_balanced.sample(5000, random_state=42).to_csv('data/dashboard_sample.csv', index=False)
-```
-
-4. Launch the app:
+3. Launch the app:
 ```bash
 streamlit run app.py
 ```
 
-## How to Deploy on Streamlit Community Cloud
+## How to Deploy on Streamlit Cloud
 
 1. Push this folder to a GitHub repository
 2. Go to share.streamlit.io
-3. Connect your GitHub account
+3. Connect to GitHub account
 4. Select the repository and set main file to `app.py`
 5. Click Deploy
 
-**Note:** Do NOT upload the full CSV (400MB). The app only needs `models/best_model.joblib`.
 
 ## Model Details
 
