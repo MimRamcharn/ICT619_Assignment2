@@ -674,6 +674,15 @@ elif page == "Predict Incident":
             total_c = 0
 
 
+            input_df = pd.DataFrame([{
+                "New_incident_description": clean_text(desc),
+                "New_nar_before_incident": clean_text(before),
+                "New_nar_what_happened": clean_text(what_happened),
+                "New_nar_injury_illness": clean_text(illness),
+                "New_nar_object_substance": clean_text(obj_substance),
+                "New_incident_location": clean_text(location)
+            }])
+            
             prediction  = int(model.predict(input_df)[0])
             probability = model.predict_proba(input_df)[0]
 
