@@ -673,17 +673,6 @@ elif page == "Predict Incident":
             djtr_c  = 0
             total_c = 0
 
-            input_df = pd.DataFrame([{
-                'New_incident_description': clean_text(desc),
-                'New_nar_before_incident':  clean_text(before),
-                'New_nar_what_happened':    clean_text(what_happened),
-                'New_nar_injury_illness':   clean_text(illness),
-                'New_nar_object_substance': clean_text(obj_substance),
-                'New_incident_location':    clean_text(location),
-                'dafw_clipped':             0.0,
-                'djtr_clipped':             0.0,
-                'total_severity_days':      0.0,
-            }])
 
             prediction  = int(model.predict(input_df)[0])
             probability = model.predict_proba(input_df)[0]
