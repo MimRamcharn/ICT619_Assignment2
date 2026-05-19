@@ -688,6 +688,9 @@ elif page == "Predict Incident":
             prediction  = int(model.predict(input_df)[0])
             probability = model.predict_proba(input_df)[0]
 
+            st.write("DEBUG raw proba:", probability)
+            st.write("DEBUG prediction:", prediction)
+
             # Ensure probabilities are valid 0-1 values
             high_prob = float(np.clip(probability[1], 0.0, 1.0))
             low_prob  = float(np.clip(probability[0], 0.0, 1.0))
