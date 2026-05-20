@@ -4,10 +4,14 @@
 ## NLP-based workplace incident classification system built for ICT619 Assignment 2.
 
 Date: 22 May 2026
+
 Members:
+
+| Name | Student ID |
+|----------|----------|
 | Mimansha D. Ramcharn | 35437257 |
-| Sarwar Taki | 35405739 |
-| Maruf HASAN | 35397276 |
+| Sarwar Taki    | 35405739 |
+| Maruf HASAN    | 35397276 |
 
 ## Project Structure
 ## How to Run Locally
