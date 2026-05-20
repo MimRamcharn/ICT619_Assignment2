@@ -280,6 +280,8 @@ with st.sidebar:
         OSHA ITA Case Detail Data 2024–2025<br><br>
         <b style='color:#8892a4;'>TRAINING RECORDS</b><br>
         ~57,208 balanced records<br><br>
+        <b style='color:#8892a4;'>INPUT FEATURES</b><br>
+        6 narrative text fields<br><br>
         <b style='color:#8892a4;'>TEST AUC-ROC</b><br>
         0.7323
     </div>
@@ -360,12 +362,9 @@ if page == "About the Model":
     st.markdown("### Methodology")
     st.markdown("""
     <div class='metric-card'>
-        <b>Type:</b> NLP-based Binary Text Classification<br><br>
-        <b>Input features (9 total):</b><br>
-        &nbsp;&nbsp;&nbsp;6 narrative text fields — each processed by its own TF-IDF vectoriser<br>
-        &nbsp;&nbsp;&nbsp;Days Away From Work (clipped at 99th percentile)<br>
-        &nbsp;&nbsp;&nbsp;Days Job Transfer / Restriction (clipped at 99th percentile)<br>
-        &nbsp;&nbsp;&nbsp;Total Severity Days (sum of above two)<br><br>
+        <b>Input features (6 total):</b><br>
+        &nbsp;&nbsp;&nbsp;6 narrative text fields — each processed by its own TF-IDF 
+        vectoriser<br><br>
         <b>Why separate TF-IDF per field?</b><br>
         Each narrative field serves a different purpose. Giving each its own vectoriser
         means location words (e.g. "warehouse") do not compete with injury words
@@ -665,9 +664,6 @@ elif page == "Predict Incident":
         if not any([desc, what_happened, illness, before, obj_substance, location]):
             st.warning("Please fill in at least one narrative field before classifying.")
         else:
-            # Build input — clip severity values same way as training
-            p99_dafw_clip = 180
-            p99_djtr_clip = 180
 
             input_df = pd.DataFrame([{
                 "New_incident_description": clean_text(desc),
