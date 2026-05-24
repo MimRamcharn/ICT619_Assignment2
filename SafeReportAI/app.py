@@ -572,8 +572,8 @@ elif page == "Dataset Explorer":
                'Precision\nHigh Priority', 'F1 (weighted)']
     lr_scores      = [0.6475, 0.7163, 0.6591, 0.6442, 0.6475]
     rf_scores      = [0.6325, 0.7081, 0.8516, 0.5921, 0.6140]
-    lr_tuned_scores = [0.6624, 0.7350, 0.6975, 0.6517, 0.6619]  # shown for reference only
-    rf_tuned_scores = [0.6445, 0.7157, 0.8369, 0.6043, 0.6308]  # shown for reference only
+    lr_tuned_scores = [0.6624, 0.7350, 0.6975, 0.6517, 0.6619]  
+    rf_tuned_scores = [0.6445, 0.7157, 0.8369, 0.6043, 0.6308]  
 
     with col5:
         fig4 = go.Figure()
@@ -762,7 +762,7 @@ elif page == "Predict Incident":
             <br>
             """, unsafe_allow_html=True)
 
-            #What this means in plain language
+            #What this means 
             st.markdown("<div class='section-header'>What This Means</div>",
                         unsafe_allow_html=True)
             if prediction == 1:
@@ -775,7 +775,7 @@ elif page == "Predict Incident":
                 immediate review by a safety officer, formal documentation, and follow-up
                 investigation to prevent recurrence.<br><br>
                 The model is correct on High Priority cases approximately <b>65.91%</b> of the
-                time on unseen data (Recall). A safety officer should always make the final call.
+                time on unseen data (Recall).
                 </div>
                 """, unsafe_allow_html=True)
             else:
@@ -788,6 +788,6 @@ elif page == "Predict Incident":
                 These cases still require logging and follow-up but do not need immediate
                 escalation.<br><br>
                 The model is correct on Low Priority cases approximately <b>63.0%</b> of the
-                time on unseen data. A safety officer should always make the final call.
+                time on unseen data. 
                 </div>
                 """, unsafe_allow_html=True)
