@@ -286,9 +286,9 @@ with st.sidebar:
         <b style='color:#8892a4;'>INPUT FEATURES</b><br>
         6 narrative text fields<br><br>
         <b style='color:#8892a4;'>BEST MODEL</b><br>
-        LR (tuned) C=0.1<br><br>
+        LR (tuned) C=1.0<br><br>
         <b style='color:#8892a4;'>TEST AUC-ROC</b><br>
-        0.7350
+        0.7163
     </div>
     """, unsafe_allow_html=True)
 
