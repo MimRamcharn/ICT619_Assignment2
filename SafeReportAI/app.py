@@ -355,8 +355,8 @@ if page == "About the Model":
         <b>Source:</b> OSHA Injury Tracking Application (ITA) Case Detail Data 2024–2025<br><br>
         <b>Full dataset:</b> 688,650 records across 39 columns<br>
         <b>Stratified sample:</b> 100,000 records (proportional per outcome class)<br>
-        <b>After downsampling to balance classes 1:1:</b> ~71,510 records<br>
-        <b>Training set (80%):</b> ~57,208 records<br>
+        <b>After downsampling to balance classes 1:1:</b> Around 71,510 records<br>
+        <b>Training set (80%):</b> Around 57,208 records<br>
         <b>Test set (20% — unseen):</b> 14,302 records<br><br>
         <b>Class balance:</b> Equal High Priority and Low Priority records in both splits.
         Downsampling was used to prevent the model from being biased toward the majority class.
